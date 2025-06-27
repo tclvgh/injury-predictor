@@ -1,5 +1,6 @@
 # Database connectivity with Heroku Postgres
 sqlalchemy      # SQL toolkit and Object Relational Mapper (ORM)
+psycopg2-binary # PostgreSQL adapter for Python
 
 # Data manipulation and analysis
 pandas      # Data structures and data analysis tools
