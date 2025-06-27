@@ -1,0 +1,7 @@
+metrics module
+==============
+
+.. automodule:: metrics
+   :members:
+   :show-inheritance:
+   :undoc-members:

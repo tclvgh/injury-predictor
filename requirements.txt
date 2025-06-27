@@ -1,0 +1,23 @@
+# Database connectivity with Heroku Postgres
+sqlalchemy      # SQL toolkit and Object Relational Mapper (ORM)
+
+# Data manipulation and analysis
+pandas      # Data structures and data analysis tools
+numpy       # Numerical computing with arrays and matrices
+
+# Machine learning
+xgboost       # Gradient boosting framework for regression and classification
+scikit-learn  # Machine learning algorithms and tools
+
+# Interactive widgets and visualization
+ipywidgets  # Interactive HTML widgets for Jupyter notebooks
+plotly      # Interactive plotting library
+matplotlib  # Static visualization library
+IPython     # Enhanced interactive Python shell
+
+# Notebook and web interface
+jupyter     # Interactive computing environment
+voila       # Convert Jupyter notebooks to standalone web applications
+
+# Environment management
+dotenv      # Load environment variables from .env files

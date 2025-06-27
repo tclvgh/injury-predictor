@@ -1,0 +1,7 @@
+visualizations module
+=====================
+
+.. automodule:: visualizations
+   :members:
+   :show-inheritance:
+   :undoc-members:

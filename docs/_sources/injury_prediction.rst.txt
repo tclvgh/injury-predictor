@@ -1,0 +1,7 @@
+injury\_prediction module
+=========================
+
+.. automodule:: injury_prediction
+   :members:
+   :show-inheritance:
+   :undoc-members:

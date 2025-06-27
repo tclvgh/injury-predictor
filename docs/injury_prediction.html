@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>injury_prediction module &mdash; Baseball Pitcher Injury Prediction 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=0831fbd9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="metrics module" href="metrics.html" />
+    <link rel="prev" title="data_preprocessing module" href="data_preprocessing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Baseball Pitcher Injury Prediction
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">data_preprocessing module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">injury_prediction module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#injury_prediction.InjuryPredictor"><code class="docutils literal notranslate"><span class="pre">InjuryPredictor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.InjuryPredictor.predict_next_injury"><code class="docutils literal notranslate"><span class="pre">InjuryPredictor.predict_next_injury()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#injury_prediction.PredictionResult"><code class="docutils literal notranslate"><span class="pre">PredictionResult</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.pitcher_name"><code class="docutils literal notranslate"><span class="pre">PredictionResult.pitcher_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.most_recent_injury"><code class="docutils literal notranslate"><span class="pre">PredictionResult.most_recent_injury</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.predicted_days_to_next_injury"><code class="docutils literal notranslate"><span class="pre">PredictionResult.predicted_days_to_next_injury</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.predicted_next_injury_date"><code class="docutils literal notranslate"><span class="pre">PredictionResult.predicted_next_injury_date</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.current_pitch_count"><code class="docutils literal notranslate"><span class="pre">PredictionResult.current_pitch_count</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.most_common_pitch_type"><code class="docutils literal notranslate"><span class="pre">PredictionResult.most_common_pitch_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.avg_effective_speed"><code class="docutils literal notranslate"><span class="pre">PredictionResult.avg_effective_speed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#injury_prediction.PredictionResult.avg_release_spin_rate"><code class="docutils literal notranslate"><span class="pre">PredictionResult.avg_release_spin_rate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">PredictionResult.avg_effective_speed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">PredictionResult.avg_release_spin_rate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">PredictionResult.current_pitch_count</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">PredictionResult.most_common_pitch_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">PredictionResult.most_recent_injury</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">PredictionResult.pitcher_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">PredictionResult.predicted_days_to_next_injury</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">PredictionResult.predicted_next_injury_date</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">metrics module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">optimization module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualizations.html">visualizations module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Baseball Pitcher Injury Prediction</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">injury_prediction module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/injury_prediction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-injury_prediction">
+<span id="injury-prediction-module"></span><h1>injury_prediction module<a class="headerlink" href="#module-injury_prediction" title="Link to this heading"></a></h1>
+<p>Injury Prediction Module for Baseball Pitchers.</p>
+<p>This module implements the core functionality for predicting the time to a pitcher's next injury
+based on their pitching patterns and injury history. It uses an XGBoost regression model
+trained on historical data to make predictions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="injury_prediction.InjuryPredictor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">injury_prediction.</span></span><span class="sig-name descname"><span class="pre">InjuryPredictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g_x_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#injury_prediction.InjuryPredictor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Predicts the time to a pitcher's next injury based on pitching patterns and injury history.</p>
+<p>This class encapsulates the injury prediction model and provides methods to retrieve
+pitcher data, calculate features, and make predictions about future injuries.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="injury_prediction.InjuryPredictor.predict_next_injury">
+<span class="sig-name descname"><span class="pre">predict_next_injury</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitcher_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#injury_prediction.PredictionResult" title="injury_prediction.PredictionResult"><span class="pre">PredictionResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#injury_prediction.InjuryPredictor.predict_next_injury" title="Link to this definition"></a></dt>
+<dd><p>Predict when a pitcher is likely to experience their next injury.</p>
+<p>This is the main prediction method that:
+1. Retrieves the pitcher's most recent injury
+2. Gets their pitching data since that injury
+3. Calculates features from the pitch data
+4. Makes a prediction using the trained model
+5. Returns a result with prediction details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pitcher_name</strong> (<em>str</em>) -- Name of the pitcher to make predictions for</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Either an object containing the prediction details, or an error message string</dt><dd><p>if prediction cannot be made</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#injury_prediction.PredictionResult" title="injury_prediction.PredictionResult">PredictionResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">injury_prediction.</span></span><span class="sig-name descname"><span class="pre">PredictionResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitcher_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">most_recent_injury</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predicted_days_to_next_injury</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predicted_next_injury_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_pitch_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">most_common_pitch_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_effective_speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_release_spin_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#injury_prediction.PredictionResult" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data class to store and structure injury prediction results.</p>
+<p>This class encapsulates all relevant information about a pitcher's injury prediction,
+including their recent injury history, predicted time to next injury, and current
+pitching statistics.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.pitcher_name">
+<span class="sig-name descname"><span class="pre">pitcher_name</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.pitcher_name" title="Link to this definition"></a></dt>
+<dd><p>Name of the pitcher</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.most_recent_injury">
+<span class="sig-name descname"><span class="pre">most_recent_injury</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.most_recent_injury" title="Link to this definition"></a></dt>
+<dd><p>Date of the pitcher's most recent injury</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.predicted_days_to_next_injury">
+<span class="sig-name descname"><span class="pre">predicted_days_to_next_injury</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.predicted_days_to_next_injury" title="Link to this definition"></a></dt>
+<dd><p>Predicted number of days until next injury</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.predicted_next_injury_date">
+<span class="sig-name descname"><span class="pre">predicted_next_injury_date</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.predicted_next_injury_date" title="Link to this definition"></a></dt>
+<dd><p>Calculated date of the predicted next injury</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.current_pitch_count">
+<span class="sig-name descname"><span class="pre">current_pitch_count</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.current_pitch_count" title="Link to this definition"></a></dt>
+<dd><p>Number of pitches thrown since most recent injury</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.most_common_pitch_type">
+<span class="sig-name descname"><span class="pre">most_common_pitch_type</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.most_common_pitch_type" title="Link to this definition"></a></dt>
+<dd><p>Most frequently used pitch type since most recent injury</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.avg_effective_speed">
+<span class="sig-name descname"><span class="pre">avg_effective_speed</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.avg_effective_speed" title="Link to this definition"></a></dt>
+<dd><p>Average effective speed of pitches since most recent injury</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="injury_prediction.PredictionResult.avg_release_spin_rate">
+<span class="sig-name descname"><span class="pre">avg_release_spin_rate</span></span><a class="headerlink" href="#injury_prediction.PredictionResult.avg_release_spin_rate" title="Link to this definition"></a></dt>
+<dd><p>Average spin rate of pitches since most recent injury</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">avg_effective_speed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">avg_release_spin_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">current_pitch_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">most_common_pitch_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">most_recent_injury</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">pitcher_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">predicted_days_to_next_injury</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">predicted_next_injury_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_preprocessing.html" class="btn btn-neutral float-left" title="data_preprocessing module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metrics.html" class="btn btn-neutral float-right" title="metrics module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

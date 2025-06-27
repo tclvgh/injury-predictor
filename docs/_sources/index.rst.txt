@@ -1,0 +1,12 @@
+Baseball Pitcher Injury Predictor Documentation
+===============
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Contents:
+
+   data_preprocessing
+   injury_prediction
+   metrics
+   optimization
+   visualizations
